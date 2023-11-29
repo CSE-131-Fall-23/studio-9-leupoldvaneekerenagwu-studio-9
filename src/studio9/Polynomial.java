@@ -3,7 +3,7 @@ package studio9;
 import java.util.LinkedList;
 
 public class Polynomial {
-	
+
 	private LinkedList<Double> list;
 
 	/**
@@ -11,9 +11,10 @@ public class Polynomial {
 	 */
 	public Polynomial() {
 		//FIXME
+		list = new LinkedList<Double>();
 	}
 
-	
+
 	/**
 	 * 
 	 * @param coeff
@@ -21,31 +22,72 @@ public class Polynomial {
 	 */
 	public void addTerm(double coeff) {
 		//FIXME
+		list.add(coeff);
+
 	}
-	
+
 	/*
 	 * Returns a String of the polynomial with the proper form:
 	 * 
 	 * Cx^N + Cx^N-1 + ... + Cx + C
 	 */
 	public String toString() {
-		return ""; //FIXME
+		String term = "";
+		for (int i = 0; i < list.size(); i++)
+		{	
+
+			if (list.get(i) == 0) {
+			}
+			else {
+				int exponent = list.size() - i - 1;
+				if (exponent == 0) {
+					term += list.get(i);
+				}
+				else {
+					term += list.get(i) + "x" + "^" + exponent + " + ";
+				}
+
+			}
+		}
+		return term;
 	}
-	
+
+	public static void main(String[]args) {
+		Polynomial p = new Polynomial();
+		p.addTerm(1);
+		p.addTerm(0);
+		p.addTerm(4);
+		p.addTerm(7);
+		p.addTerm(4);
+
+		System.out.println(p);
+
+		System.out.println();
+
+
+	}
+
+	//FIXME
+
 	/**
 	 * 
 	 * @param x
 	 * @return value of polynomial at that x
 	 */
 	public double evaluate(double x) {
-		return 0;//FIXME
+		double bigNum = 0;
+		for (int i = 0; i < list.size(); i++) {
+
+		bigNum += (list.get(i)*Math.pow(x, (list.size() - i - 1) ));
+		}
+		return bigNum;//FIXME
 	}
 
-	
+
 	public Polynomial derivative() {
 		return null;//FIXME
 	}
-	
+
 
 	/**
 	 * This is the "equals" method that is called by
